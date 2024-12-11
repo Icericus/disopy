@@ -5,6 +5,9 @@
 FROM python:3.13-alpine
 
 RUN pip install disopy
+RUN apk add --no-cache ffmpeg
+RUN apk add --no-cache opus
+RUN apk add --no-cache libffi-dev
 RUN mkdir -p /config
 
 VOLUME ["/config"]
