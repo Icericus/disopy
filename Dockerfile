@@ -2,12 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-FROM python:3.13-alpine
+FROM python:3.13-debian
 
+RUN apt-get update && \
+apt-get install -y ffmpeg libopus libffi-dev && \
+apt-get clean && \
+rm -rf /var/lib/apt/lists/*
 RUN pip install disopy
-RUN apk add --no-cache ffmpeg
-RUN apk add --no-cache opus
-RUN apk add --no-cache libffi-dev
 RUN mkdir -p /config
 
 VOLUME ["/config"]
